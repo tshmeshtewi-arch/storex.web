@@ -1,3 +1,9 @@
+/* ═══ إصلاح شاشة الدخول: نموذج واحد ظاهر فقط ═══ */
+.auth-card { display: none; }
+#loginForm { display: block; }
+.auth-card[style*="display: block"],
+.auth-card[style*="display:block"] { display: block !important; }
+
 /* ===== RESET ===== */
 * {
   margin: 0;
@@ -1507,4 +1513,4 @@ html.menu-open {
   .mobile-menu {
     width: 260px;
   }
-}
+  }
