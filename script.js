@@ -278,7 +278,7 @@ function scrollWallets(direction) {
   }
 }
 
-// ===== نظام تسجيل الدخول (بدون ربط ديسكورد) =====
+// ===== نظام تسجيل الدخول =====
 const USERS_KEY = 'storex_users';
 const SESSION_KEY = 'storex_session';
 const VERIFY_CODE_KEY = 'verify_code';
@@ -293,17 +293,19 @@ function saveUsers(users) {
   localStorage.setItem(USERS_KEY, JSON.stringify(users));
 }
 
-function showSignup() {
-  document.getElementById('loginForm').style.display = 'none';
-  document.getElementById('signupForm').style.display = 'block';
-  document.getElementById('verifyScreen').style.display = 'none';
+// دالة موحدة للتنقل بين نماذج الدخول (login / signup / verify)
+function goToAuthStep(step) {
+  const login = document.getElementById('loginForm');
+  const signup = document.getElementById('signupForm');
+  const verify = document.getElementById('verifyScreen');
+
+  if (login) login.style.display = step === 'login' ? 'block' : 'none';
+  if (signup) signup.style.display = step === 'signup' ? 'block' : 'none';
+  if (verify) verify.style.display = step === 'verify' ? 'block' : 'none';
 }
 
-function showLogin() {
-  document.getElementById('loginForm').style.display = 'block';
-  document.getElementById('signupForm').style.display = 'none';
-  document.getElementById('verifyScreen').style.display = 'none';
-}
+function showSignup() { goToAuthStep('signup'); }
+function showLogin() { goToAuthStep('login'); }
 
 function handleSignup() {
   const name = document.getElementById('signupName').value.trim();
@@ -335,8 +337,7 @@ function handleSignup() {
   saveUsers(users);
   sendVerificationCode(email, name);
 
-  document.getElementById('signupForm').style.display = 'none';
-  document.getElementById('verifyScreen').style.display = 'block';
+  goToAuthStep('verify');
   document.getElementById('userEmail').innerText = email;
   localStorage.setItem(PENDING_EMAIL_KEY, email);
   showToast('📧 تم إنشاء رمز التحقق');
@@ -366,8 +367,7 @@ function handleLogin() {
 
   if (!user.verified) {
     sendVerificationCode(email, user.name);
-    document.getElementById('loginForm').style.display = 'none';
-    document.getElementById('verifyScreen').style.display = 'block';
+    goToAuthStep('verify');
     document.getElementById('userEmail').innerText = email;
     localStorage.setItem(PENDING_EMAIL_KEY, email);
     showToast('📧 تم إنشاء رمز التحقق');
@@ -438,13 +438,17 @@ function completeLogin(email) {
 
   localStorage.setItem(SESSION_KEY, JSON.stringify(user));
 
-  document.getElementById('authScreen').style.display = 'none';
-  document.getElementById('mainSite').style.display = 'block';
-  document.getElementById('userDisplayName').innerText = user.name;
-  document.getElementById('dropdownName').innerText = user.name;
-  document.getElementById('dropdownEmail').innerText = user.email;
-  document.getElementById('settingsName').innerText = user.name;
-  document.getElementById('settingsEmail').innerText = user.email;
+  const authScreen = document.getElementById('authScreen');
+  const mainSite = document.getElementById('mainSite');
+  if (authScreen) authScreen.style.display = 'none';
+  if (mainSite) mainSite.style.display = 'block';
+
+  const set = (id, v) => { const el = document.getElementById(id); if (el) el.innerText = v; };
+  set('userDisplayName', user.name);
+  set('dropdownName', user.name);
+  set('dropdownEmail', user.email);
+  set('settingsName', user.name);
+  set('settingsEmail', user.email);
 
   updateWalletBalancesUI();
   showToast(`👋 مرحباً ${user.name}`);
@@ -452,12 +456,19 @@ function completeLogin(email) {
 
 function handleLogout() {
   localStorage.removeItem(SESSION_KEY);
-  document.getElementById('authScreen').style.display = 'flex';
-  document.getElementById('mainSite').style.display = 'none';
-  document.getElementById('loginEmail').value = '';
-  document.getElementById('loginPassword').value = '';
-  document.getElementById('verifyCode').value = '';
-  document.getElementById('userDropdown').classList.remove('show');
+  const authScreen = document.getElementById('authScreen');
+  const mainSite = document.getElementById('mainSite');
+  if (authScreen) authScreen.style.display = 'flex';
+  if (mainSite) mainSite.style.display = 'none';
+
+  const clear = (id) => { const el = document.getElementById(id); if (el) el.value = ''; };
+  clear('loginEmail');
+  clear('loginPassword');
+  clear('verifyCode');
+
+  goToAuthStep('login');
+  const dropdown = document.getElementById('userDropdown');
+  if (dropdown) dropdown.classList.remove('show');
   closeMobileMenu();
   showToast('🚪 تم تسجيل الخروج');
 }
@@ -466,13 +477,17 @@ function handleLogout() {
 (function checkSession() {
   const session = JSON.parse(localStorage.getItem(SESSION_KEY) || 'null');
   if (session && session.verified) {
-    document.getElementById('authScreen').style.display = 'none';
-    document.getElementById('mainSite').style.display = 'block';
-    document.getElementById('userDisplayName').innerText = session.name;
-    document.getElementById('dropdownName').innerText = session.name;
-    document.getElementById('dropdownEmail').innerText = session.email;
-    document.getElementById('settingsName').innerText = session.name;
-    document.getElementById('settingsEmail').innerText = session.email;
+    const authScreen = document.getElementById('authScreen');
+    const mainSite = document.getElementById('mainSite');
+    if (authScreen) authScreen.style.display = 'none';
+    if (mainSite) mainSite.style.display = 'block';
+
+    const set = (id, v) => { const el = document.getElementById(id); if (el) el.innerText = v; };
+    set('userDisplayName', session.name);
+    set('dropdownName', session.name);
+    set('dropdownEmail', session.email);
+    set('settingsName', session.name);
+    set('settingsEmail', session.email);
   }
 })();
 
