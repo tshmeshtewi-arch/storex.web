@@ -1,0 +1,288 @@
+/* ===== صفحة المحافظ (تمرير يمين ويسار) ===== */
+.wallets-wrapper {
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.wallets-nav-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.wallet-arrow-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 230, 118, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  color: #f0f4ff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.wallet-arrow-btn:hover {
+  background: rgba(0, 230, 118, 0.14);
+  color: #00e676;
+}
+
+.active-wallet-indicator {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #69f0ae;
+  text-align: center;
+}
+
+.wallets-carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 6px 4px 12px;
+}
+
+.wallets-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.wallet-card {
+  position: relative;
+  flex: 0 0 88%;
+  min-height: 220px;
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  scroll-snap-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.wallet-card.is-selected {
+  border-color: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.wallet-libyana {
+  background: linear-gradient(135deg, #9b4dca 0%, #c45ab3 100%);
+}
+
+.wallet-bank {
+  background: linear-gradient(135deg, #1d8cf8 0%, #3358f4 100%);
+}
+
+.wallet-decor-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+}
+
+.wallet-circle-top {
+  width: 220px;
+  height: 220px;
+  top: -70px;
+  left: -50px;
+}
+
+.wallet-circle-bottom {
+  width: 240px;
+  height: 240px;
+  bottom: -95px;
+  right: 15%;
+}
+
+.wallet-top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.wallet-primary-tag,
+.wallet-select-badge {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffd54f;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.wallet-info {
+  flex: 1;
+  text-align: right;
+}
+
+.wallet-name {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.wallet-meta {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.wallet-icon-box {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.22);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 1rem;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.wallet-bottom {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.wallet-balance-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 4px;
+}
+
+.wallet-balance-value {
+  font-size: 2.15rem;
+  font-weight: 900;
+  color: #ffffff;
+  direction: ltr;
+}
+
+.wallet-balance-value small {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.wallets-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+  margin-bottom: 24px;
+}
+
+.wallet-dot {
+  width: 10px;
+  height: 6px;
+  border: none;
+  border-radius: 999px;
+  background: #2c3545;
+  cursor: pointer;
+  padding: 0;
+  transition: width 0.25s ease, background 0.25s ease;
+}
+
+.wallet-dot.active {
+  width: 28px;
+  background: #3b82f6;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(0, 230, 118, 0.08);
+  border-radius: 20px;
+  padding: 24px;
+}
+
+.topup-box h3 {
+  font-size: 1rem;
+  color: #00e676;
+  margin-bottom: 14px;
+}
+
+.topup-controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.topup-controls input {
+  flex: 1;
+  min-width: 180px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: #f0f4ff;
+  font-family: 'Cairo', sans-serif;
+  outline: none;
+}
+
+.payment-methods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.payment-option-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: #f0f4ff;
+  font-family: 'Cairo', sans-serif;
+  text-align: right;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.payment-option-card.active-method {
+  border-color: #00e676;
+  background: rgba(0, 230, 118, 0.08);
+}
+
+.payment-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+.payment-details h3 {
+  font-size: 0.95rem;
+  margin-bottom: 3px;
+}
+
+.payment-details p {
+  font-size: 0.78rem;
+  color: rgba(240, 244, 255, 0.55);
+}
+
+.checkout-pay-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}

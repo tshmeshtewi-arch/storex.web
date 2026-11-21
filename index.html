@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+
+  <title>🛍️ 𝐒𝐓𝐎𝐑𝐄 𝐗</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ===== خلفية متحركة ===== -->
+  <div class="bg-layer">
+    <div class="glow orbs"></div>
+    <div class="grid-overlay"></div>
+    <div id="particles"></div>
+  </div>
+
+  <!-- ===== شاشة تسجيل الدخول ===== -->
+  <div id="authScreen" class="auth-screen">
+    <div class="auth-backdrop"></div>
+    <div class="auth-container">
+
+      <div class="auth-brand">
+        <div class="auth-logo">𝐒𝐓𝐎𝐑𝐄 𝐗</div>
+        <div class="auth-badge">LYD</div>
+      </div>
+
+      <!-- Login -->
+      <div id="loginForm" class="auth-card">
+        <div class="auth-header">
+          <h2>تسجيل الدخول</h2>
+          <p>مرحباً بعودتك! أدخل بياناتك للمتابعة</p>
+        </div>
+        <div class="auth-input-group">
+          <div class="auth-input-field">
+            <label>البريد الإلكتروني</label>
+            <input type="email" id="loginEmail" placeholder="name@example.com" required>
+            <div class="input-icon">📧</div>
+          </div>
+          <div class="auth-input-field">
+            <label>كلمة السر</label>
+            <input type="password" id="loginPassword" placeholder="••••••••" required>
+            <div class="input-icon">🔒</div>
+          </div>
+          <button class="auth-btn" type="button" onclick="handleLogin()">
+            <span>دخول</span>
+            <div class="btn-shimmer"></div>
+          </button>
+        </div>
+        <div class="auth-footer">
+          <p>ليس لديك حساب؟ <a href="javascript:void(0)" onclick="showSignup()">إنشاء حساب جديد</a></p>
+        </div>
+      </div>
+
+      <!-- Signup -->
+      <div id="signupForm" class="auth-card" style="display:none;">
+        <div class="auth-header">
+          <h2>إنشاء حساب</h2>
+          <p>انضم إلينا واستمتع بالتجربة الكاملة</p>
+        </div>
+        <div class="auth-input-group">
+          <div class="auth-input-field">
+            <label>الاسم كامل</label>
+            <input type="text" id="signupName" placeholder="محمد أحمد" required>
+            <div class="input-icon">👤</div>
+          </div>
+          <div class="auth-input-field">
+            <label>البريد الإلكتروني</label>
+            <input type="email" id="signupEmail" placeholder="name@example.com" required>
+            <div class="input-icon">📧</div>
+          </div>
+          <div class="auth-input-field">
+            <label>كلمة السر</label>
+            <input type="password" id="signupPassword" placeholder="أقل شيء 6 أحرف" required>
+            <div class="input-icon">🔒</div>
+          </div>
+          <button class="auth-btn" type="button" onclick="handleSignup()">
+            <span>إنشاء حساب</span>
+            <div class="btn-shimmer"></div>
+          </button>
+        </div>
+        <div class="auth-footer">
+          <p>لديك حساب؟ <a href="javascript:void(0)" onclick="showLogin()">تسجيل دخول</a></p>
+        </div>
+      </div>
+
+      <!-- Verify -->
+      <div id="verifyScreen" class="auth-card" style="display:none;">
+        <div class="auth-header">
+          <h2>تأكيد البريد</h2>
+          <p>أدخل رمز التحقق المرسل إلى</p>
+          <p id="userEmail" class="verify-email">email@example.com</p>
+        </div>
+        <div class="auth-input-group">
+          <div class="auth-input-field code-field">
+            <input type="text" id="verifyCode" placeholder="000000" maxlength="6" required>
+          </div>
+          <button class="auth-btn" type="button" onclick="handleVerify()">
+            <span>تأكيد</span>
+            <div class="btn-shimmer"></div>
+          </button>
+          <button class="auth-btn auth-btn-outline" type="button" onclick="resendCode()">
+            <span>إعادة إرسال الرمز</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== الموقع الرئيسي ===== -->
+  <div id="mainSite" style="display:none;">
+
+    <!-- ====== شريط التنقل ====== -->
+    <nav class="glass-nav">
+      <div class="nav-brand">
+        <img src="images/storex.png" alt="𝐒𝐓𝐎𝐑𝐄 𝐗" class="nav-logo">
+        <span class="logo-glow">𝐒𝐓𝐎𝐑𝐄 𝐗</span>
+        <span class="currency-badge">LYD</span>
+      </div>
+
+      <div class="nav-user" id="navUser">
+        <div class="user-profile" onclick="toggleUserMenu()">
+          <div class="user-avatar" id="userAvatar">👤</div>
+          <span id="userDisplayName">مستخدم</span>
+          <span class="dropdown-arrow">▾</span>
+        </div>
+        <div class="user-dropdown" id="userDropdown">
+          <div class="dropdown-header">
+            <div class="dropdown-avatar">👤</div>
+            <div>
+              <div class="dropdown-name" id="dropdownName">مستخدم</div>
+              <div class="dropdown-email" id="dropdownEmail">user@email.com</div>
+            </div>
+          </div>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="javascript:void(0)" onclick="showPage('wallets')">
+            <span class="dropdown-icon">💳</span>
+            محافظي
+          </a>
+          <a class="dropdown-item" href="javascript:void(0)" onclick="showPage('settings')">
+            <span class="dropdown-icon">⚙️</span>
+            الإعدادات
+          </a>
+          <a class="dropdown-item" href="javascript:void(0)" onclick="showPage('shop')">
+            <span class="dropdown-icon">🛒</span>
+            المتجر
+          </a>
+          <a class="dropdown-item" href="javascript:void(0)" onclick="showPage('games')">
+            <span class="dropdown-icon">🎮</span>
+            الألعاب
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item dropdown-logout" href="javascript:void(0)" onclick="handleLogout()">
+            <span class="dropdown-icon">🚪</span>
+            خروج من الحساب
+          </a>
+        </div>
+
+        <div class="hamburger" onclick="toggleMobileNav()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ====== القائمة الجانبية ====== -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileNav()"></div>
+    <nav class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-header">
+        <span class="logo-glow">𝐒𝐓𝐎𝐑𝐄 𝐗</span>
+        <button class="mobile-menu-close" type="button" onclick="toggleMobileNav()">✕</button>
+      </div>
+      <div class="mobile-menu-links">
+        <a href="javascript:void(0)" onclick="showPage('shop')" class="mobile-link active">
+          <span class="mobile-link-icon">🛒</span>
+          <span>المنتجات</span>
+        </a>
+        <a href="javascript:void(0)" onclick="showPage('wallets')" class="mobile-link">
+          <span class="mobile-link-icon">💳</span>
+          <span>محافظي</span>
+        </a>
+        <a href="javascript:void(0)" onclick="showPage('games')" class="mobile-link">
+          <span class="mobile-link-icon">🎮</span>
+          <span>الألعاب</span>
+        </a>
+        <a href="javascript:void(0)" onclick="showPage('cart')" class="mobile-link">
+          <span class="mobile-link-icon">🛍️</span>
+          <span>السلة</span>
+        </a>
+        <a href="javascript:void(0)" onclick="showPage('contact')" class="mobile-link">
+          <span class="mobile-link-icon">📞</span>
+          <span>التواصل</span>
+        </a>
+        <a href="javascript:void(0)" onclick="showPage('rules')" class="mobile-link">
+          <span class="mobile-link-icon">📜</span>
+          <span>القوانين</span>
+        </a>
+      </div>
+      <div class="mobile-menu-footer">
+        <span>🛍️ 𝐒𝐓𝐎𝐑𝐄 𝐗 &copy; 2026</span>
+      </div>
+    </nav>
+
+    <!-- ===== صفحة المنتجات ===== -->
+    <section id="shop" class="page active-page">
+      <div class="container">
+        <div class="section-header">
+          <h1 class="section-title">🛒 منتجاتنا</h1>
+          <p class="section-subtitle">اختر ما يناسبك من متجر 𝐒𝐓𝐎𝐑𝐄 𝐗</p>
+        </div>
+        <div class="products-grid" id="shopProductsGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===== صفحة المحافظ (تمرير يمين ويسار) ===== -->
+    <section id="wallets" class="page">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">المحافظ</div>
+          <h1 class="section-title">محافظي</h1>
+          <p class="section-subtitle">كل رصيد محفوظ في محفظته الخاصة حسب العملة — اسحب يمين ويسار للتنقل</p>
+        </div>
+
+        <div class="wallets-wrapper">
+          <div class="wallets-nav-controls">
+            <button type="button" class="wallet-arrow-btn" onclick="scrollWallets(-1)" aria-label="السابق">→</button>
+            <span class="active-wallet-indicator" id="activeWalletLabel">المحفظة النشطة: محفظة ليبيانا</span>
+            <button type="button" class="wallet-arrow-btn" onclick="scrollWallets(1)" aria-label="التالي">←</button>
+          </div>
+
+          <div class="wallets-carousel" id="walletsCarousel" tabindex="0">
+            <!-- محفظة ليبيانا -->
+            <article class="wallet-card wallet-libyana is-selected" data-wallet="libyana" data-label="محفظة ليبيانا">
+              <div class="wallet-decor-circle wallet-circle-top"></div>
+              <div class="wallet-decor-circle wallet-circle-bottom"></div>
+
+              <div class="wallet-top">
+                <span class="wallet-select-badge" id="badge-libyana">✓ مختارة</span>
+                <div class="wallet-info">
+                  <h3 class="wallet-name">محفظة ليبيانا</h3>
+                  <span class="wallet-meta">محفظة مستقلة • رصيد ليبيانا</span>
+                </div>
+                <div class="wallet-icon-box" aria-hidden="true">LY</div>
+              </div>
+
+              <div class="wallet-bottom">
+                <span class="wallet-balance-label">الرصيد المتاح</span>
+                <div class="wallet-balance-value">
+                  <span id="balance-libyana">0.000</span>
+                  <small>د.ل</small>
+                </div>
+              </div>
+            </article>
+
+            <!-- المحفظة الرئيسية (البطاقة المصرفية) -->
+            <article class="wallet-card wallet-bank" data-wallet="bank_card" data-label="المحفظة الرئيسية (البطاقة المصرفية)">
+              <div class="wallet-decor-circle wallet-circle-top"></div>
+              <div class="wallet-decor-circle wallet-circle-bottom"></div>
+
+              <div class="wallet-top">
+                <span class="wallet-primary-tag">★ الأساسية</span>
+                <div class="wallet-info">
+                  <h3 class="wallet-name">المحفظة الرئيسية</h3>
+                  <span class="wallet-meta">محفظة مستقلة • دينار ليبي</span>
+                </div>
+                <div class="wallet-icon-box" aria-hidden="true">💳</div>
+              </div>
+
+              <div class="wallet-bottom">
+                <span class="wallet-balance-label">الرصيد المتاح</span>
+                <div class="wallet-balance-value">
+                  <span id="balance-bank">0.000</span>
+                  <small>د.ل</small>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- مؤشر النقاط -->
+          <div class="wallets-dots" id="walletsDots" role="tablist" aria-label="مؤشر المحافظ">
+            <button type="button" class="wallet-dot active" data-index="0" aria-label="محفظة ليبيانا"></button>
+            <button type="button" class="wallet-dot" data-index="1" aria-label="المحفظة الرئيسية"></button>
+          </div>
+
+          <!-- شحن رصيد للمحفظة المحددة -->
+          <div class="glass-card topup-box">
+            <h3>💰 إضافة رصيد إلى المحفظة المحددة</h3>
+            <div class="topup-controls">
+              <input type="number" id="topupAmount" min="1" step="0.5" placeholder="أدخل المبلغ (د.ل)">
+              <button type="button" class="btn-glow" onclick="addWalletBalance()">➕ شحن المحفظة</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== صفحة الألعاب ===== -->
+    <section id="games" class="page">
+      <div class="container">
+        <div class="section-header">
+          <h1 class="section-title">🎮 الألعاب</h1>
+          <p class="section-subtitle">أقوى العاب المتجر</p>
+        </div>
+
+        <div class="products-grid">
+
+          <div class="product-card">
+            <div class="card-img">
+              <img src="images/Gta5.jpg" alt="GTA 5">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-body">
+              <h3>GTA 5</h3>
+              <p>gta 5 النسخة الاصلية</p>
+              <div class="card-footer">
+                <span class="card-price">💰 75 LYD</span>
+                <button class="btn-glow" type="button" onclick="addToCart('GTA 5',75)">➕ أضف للسلة</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="card-img">
+              <img src="images/fc23.jpg" alt="FIFA 23">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-body">
+              <h3>FIFA 23</h3>
+              <p>لعبة كرة القدم الأقوى</p>
+              <div class="card-footer">
+                <span class="card-price">💰 60 LYD</span>
+                <button class="btn-glow" type="button" onclick="addToCart('FIFA 23',60)">➕ أضف للسلة</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="card-img">
+              <img src="images/cod.jpg" alt="Call of Duty">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-body">
+              <h3>Call of Duty</h3>
+              <p>أحدث إصدار من COD</p>
+              <div class="card-footer">
+                <span class="card-price">💰 80 LYD</span>
+                <button class="btn-glow" type="button" onclick="addToCart('Call of Duty',80)">➕ أضف للسلة</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="card-img">
+              <img src="images/rd2.jpg" alt="RDR 2">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-body">
+              <h3>Red Dead Redemption 2</h3>
+              <p>لعبة الغرب الأمريكي الشهيرة</p>
+              <div class="card-footer">
+                <span class="card-price">💰 90 LYD</span>
+                <button class="btn-glow" type="button" onclick="addToCart('Red Dead Redemption 2',90)">➕ أضف للسلة</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== السلة ===== -->
+    <section id="cart" class="page">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">السلة</div>
+          <h1 class="section-title">🛍️ سلة المشتريات</h1>
+        </div>
+        <div id="cart-container" class="cart-container"></div>
+        <div class="cart-actions">
+          <button class="btn-glow btn-outline" type="button" onclick="clearCart()">🗑️ تصفير السلة</button>
+          <button class="btn-glow" type="button" onclick="showPage('checkout')">✅ تأكيد الطلب</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== تأكيد الطلب — اختيار طريقة الدفع والتواصل ===== -->
+    <section id="checkout" class="page">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">الطلب</div>
+          <h1 class="section-title">📋 تأكيد الطلب</h1>
+          <p class="section-subtitle">اختر طريقة الدفع (ليبيانا أو البطاقة المصرفية) لإتمام طلبك</p>
+        </div>
+
+        <div id="checkoutSummary" class="checkout-summary"></div>
+
+        <div class="payment-methods-grid">
+          <button type="button" class="payment-option-card active-method" data-method="libyana" onclick="selectPaymentMethod('libyana')">
+            <div class="payment-badge">LY</div>
+            <div class="payment-details">
+              <h3>دفع عبر ليبيانا</h3>
+              <p>رصيد محفظة ليبيانا • تحويل ليبيانا</p>
+            </div>
+          </button>
+
+          <button type="button" class="payment-option-card" data-method="bank_card" onclick="selectPaymentMethod('bank_card')">
+            <div class="payment-badge">💳</div>
+            <div class="payment-details">
+              <h3>دفع بالبطاقة المصرفية</h3>
+              <p>المحفظة الرئيسية • دينار ليبي</p>
+            </div>
+          </button>
+        </div>
+
+        <div class="checkout-pay-box">
+          <button type="button" class="btn-glow" onclick="processWalletPayment()">💳 إتمام الدفع من المحفظة</button>
+        </div>
+
+        <div class="contact-choice-grid">
+
+          <a href="https://www.facebook.com/share/1Jbftu8ie9/" target="_blank" rel="noopener noreferrer" class="contact-choice-card facebook-choice">
+            <div class="choice-icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </div>
+            <div class="choice-info">
+              <h3>تواصل عبر Facebook</h3>
+              <p>راسلنا على صفحتنا في فيسبوك مباشرة</p>
+            </div>
+            <span class="choice-arrow">←</span>
+          </a>
+
+          <a href="https://wa.me/218926974294" target="_blank" rel="noopener noreferrer" class="contact-choice-card whatsapp-choice">
+            <div class="choice-icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+              </svg>
+            </div>
+            <div class="choice-info">
+              <h3>تواصل عبر WhatsApp</h3>
+              <p>راسلنا مباشرة على الواتساب</p>
+            </div>
+            <span class="choice-arrow">←</span>
+          </a>
+
+        </div>
+
+        <div class="checkout-note">
+          <p>📌 احتفظ بملاحظة المنتجات التي اخترتها عند التواصل معنا</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== التواصل ===== -->
+    <section id="contact" class="page">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">تواصل</div>
+          <h1 class="section-title">📞 تواصل معنا</h1>
+          <p class="section-subtitle">نحن هنا لمساعدتك</p>
+        </div>
+
+        <div class="contact-cards-grid">
+
+          <a href="https://www.facebook.com/share/1Jbftu8ie9/" target="_blank" rel="noopener noreferrer" class="contact-social-card facebook-card">
+            <div class="social-icon">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </div>
+            <div class="social-info">
+              <h3>Facebook</h3>
+              <p>راسلنا على الفيسبوك</p>
+            </div>
+          </a>
+
+          <a href="https://wa.me/218926974294" target="_blank" rel="noopener noreferrer" class="contact-social-card whatsapp-card">
+            <div class="social-icon">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+              </svg>
+            </div>
+            <div class="social-info">
+              <h3>WhatsApp</h3>
+              <p>راسلنا على الواتساب</p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== القوانين ===== -->
+    <section id="rules" class="page">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">قوانين</div>
+          <h1 class="section-title">📜 القوانين</h1>
+        </div>
+        <div class="rules-grid">
+          <div class="glass-card rules-card">
+            <h2>🛡️ قوانين الشراء</h2>
+            <ul>
+              <li>📦 تسليم المنتج خلال 48 ساعة</li>
+              <li>🚫 لا يوجد استرجاع بعد الاستلام</li>
+            </ul>
+          </div>
+          <div class="glass-card rules-card">
+            <h2>⚖️ قوانين 𝐒𝐓𝐎𝐑𝐄 𝐗</h2>
+            <ul>
+              <li>🚫 يمنع السب</li>
+              <li>🙏 احترام الإدارة</li>
+              <li>🚫 يمنع فتح طلب بدون سبب</li>
+              <li>🔨 يمنع إساءة استخدام المتجر</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== الإعدادات ===== -->
+    <section id="settings" class="page">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">الحساب</div>
+          <h1 class="section-title">⚙️ الإعدادات</h1>
+          <p class="section-subtitle">إعدادات الحساب الشخصية</p>
+        </div>
+        <div class="glass-card">
+          <div class="settings-section">
+            <h3>👤 معلومات الحساب</h3>
+            <div class="settings-row">
+              <span class="settings-label">الاسم:</span>
+              <span class="settings-value" id="settingsName">--</span>
+            </div>
+            <div class="settings-row">
+              <span class="settings-label">البريد الإلكتروني:</span>
+              <span class="settings-value" id="settingsEmail">--</span>
+            </div>
+          </div>
+          <div class="settings-section">
+            <h3>🔐 الأمان</h3>
+            <button class="btn-glow" type="button" onclick="showToast('🔜 قريباً')">تغيير كلمة السر</button>
+          </div>
+          <div class="settings-section">
+            <button class="btn-glow btn-logout-settings" type="button" onclick="handleLogout()">🚪 خروج من الحساب</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== الفوتر ===== -->
+    <footer class="site-footer">
+      <p>🛍️ 𝐒𝐓𝐎𝐑𝐄 𝐗 &copy; 2026 | جميع الحقوق محفوظة</p>
+    </footer>
+
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
