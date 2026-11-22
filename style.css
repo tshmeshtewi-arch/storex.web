@@ -18,6 +18,7 @@ body {
   min-height: 100vh;
   direction: rtl;
   overflow-x: hidden;
+  font-size: 14px;
 }
 
 html.menu-open {
@@ -55,7 +56,7 @@ html.menu-open {
   background-image:
     linear-gradient(rgba(0, 230, 118, 0.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 230, 118, 0.02) 1px, transparent 1px);
-  background-size: 60px 60px;
+  background-size: 52px 52px;
 }
 
 #particles {
@@ -98,17 +99,17 @@ html.menu-open {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 440px;
-  padding: 20px;
+  max-width: 480px;
+  padding: 14px;
 }
 
 .auth-brand {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .auth-logo {
-  font-size: 2rem;
+  font-size: 1.65rem;
   font-weight: 900;
   background: linear-gradient(135deg, #00e676, #69f0ae);
   -webkit-background-clip: text;
@@ -118,46 +119,46 @@ html.menu-open {
 
 .auth-badge {
   display: inline-block;
-  margin-top: 8px;
+  margin-top: 6px;
   background: rgba(0, 230, 118, 0.1);
   border: 1px solid rgba(0, 230, 118, 0.15);
-  padding: 3px 12px;
+  padding: 2px 10px;
   border-radius: 20px;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
   color: #00e676;
   letter-spacing: 1px;
 }
 
 .auth-card {
-  background: rgba(10, 14, 26, 0.8);
+  background: rgba(10, 14, 26, 0.82);
   backdrop-filter: blur(24px);
   border: 1px solid rgba(0, 230, 118, 0.08);
-  border-radius: 24px;
-  padding: 32px;
+  border-radius: 20px;
+  padding: 24px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
 .auth-header {
   text-align: center;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
 }
 
 .auth-header h2 {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .auth-header p {
-  color: rgba(240, 244, 255, 0.4);
-  font-size: 0.85rem;
+  color: rgba(240, 244, 255, 0.45);
+  font-size: 0.8rem;
 }
 
 .auth-input-group {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .auth-input-field {
@@ -166,21 +167,21 @@ html.menu-open {
 
 .auth-input-field label {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   font-weight: 600;
-  color: rgba(240, 244, 255, 0.5);
-  margin-bottom: 6px;
+  color: rgba(240, 244, 255, 0.55);
+  margin-bottom: 5px;
 }
 
 .auth-input-field input {
   width: 100%;
-  padding: 14px 16px;
-  padding-right: 44px;
+  padding: 11px 14px;
+  padding-right: 40px;
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
   color: #f0f4ff;
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   font-family: 'Cairo', sans-serif;
   transition: all 0.3s;
   outline: none;
@@ -189,41 +190,40 @@ html.menu-open {
 .auth-input-field input:focus {
   border-color: rgba(0, 230, 118, 0.3);
   background: rgba(0, 230, 118, 0.03);
-  box-shadow: 0 0 20px rgba(0, 230, 118, 0.03);
 }
 
 .auth-input-field input::placeholder {
-  color: rgba(240, 244, 255, 0.15);
+  color: rgba(240, 244, 255, 0.18);
 }
 
 .input-icon {
   position: absolute;
-  bottom: 14px;
-  right: 14px;
-  font-size: 1rem;
-  opacity: 0.3;
+  bottom: 11px;
+  right: 12px;
+  font-size: 0.9rem;
+  opacity: 0.35;
 }
 
 .auth-btn {
   position: relative;
   overflow: hidden;
   width: 100%;
-  padding: 14px;
+  padding: 11px;
   background: linear-gradient(135deg, #00c853, #00e676);
   border: none;
-  border-radius: 14px;
+  border-radius: 12px;
   color: #0a0e1a;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-family: 'Cairo', sans-serif;
   cursor: pointer;
   transition: all 0.3s;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .auth-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 230, 118, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0, 230, 118, 0.2);
 }
 
 .auth-btn-outline {
@@ -231,12 +231,6 @@ html.menu-open {
   border: 1px solid rgba(0, 230, 118, 0.15);
   color: #00e676;
   margin-top: 0;
-}
-
-.auth-btn-outline:hover {
-  background: rgba(0, 230, 118, 0.05);
-  box-shadow: none;
-  transform: none;
 }
 
 .btn-shimmer {
@@ -257,18 +251,18 @@ html.menu-open {
 /* ===== زر تسجيل الدخول عبر Google ===== */
 .google-btn {
   width: 100%;
-  padding: 13px 16px;
-  border-radius: 14px;
+  padding: 10px 14px;
+  border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.05);
   color: #f0f4ff;
   font-family: 'Cairo', sans-serif;
-  font-size: 0.92rem;
+  font-size: 0.84rem;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   cursor: pointer;
   transition: all 0.25s ease;
 }
@@ -279,22 +273,22 @@ html.menu-open {
 }
 
 .google-icon {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: #ffffff;
   color: #0a0e1a;
   font-weight: 900;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   display: grid;
   place-items: center;
 }
 
 .auth-footer {
   text-align: center;
-  margin-top: 20px;
-  font-size: 0.85rem;
-  color: rgba(240, 244, 255, 0.4);
+  margin-top: 16px;
+  font-size: 0.8rem;
+  color: rgba(240, 244, 255, 0.45);
 }
 
 .auth-footer a {
@@ -310,9 +304,9 @@ html.menu-open {
 
 .code-field input {
   text-align: center;
-  font-size: 1.5rem !important;
-  letter-spacing: 12px;
-  padding-right: 16px !important;
+  font-size: 1.3rem !important;
+  letter-spacing: 10px;
+  padding-right: 14px !important;
   font-weight: 700;
   direction: ltr;
 }
@@ -320,7 +314,7 @@ html.menu-open {
 .verify-email {
   color: #00e676 !important;
   font-weight: 600;
-  font-size: 0.9rem !important;
+  font-size: 0.84rem !important;
 }
 
 /* ===== شريط التنقل العلوي ===== */
@@ -328,8 +322,8 @@ html.menu-open {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 24px;
-  background: rgba(10, 14, 26, 0.7);
+  padding: 9px 16px;
+  background: rgba(10, 14, 26, 0.78);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(0, 230, 118, 0.06);
   position: sticky;
@@ -340,49 +334,49 @@ html.menu-open {
 .nav-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .nav-logo {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
   object-fit: cover;
 }
 
 .logo-glow {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 900;
   background: linear-gradient(135deg, #00e676, #69f0ae);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
 }
 
 .currency-badge {
   background: rgba(0, 230, 118, 0.1);
   border: 1px solid rgba(0, 230, 118, 0.15);
-  padding: 2px 10px;
+  padding: 2px 8px;
   border-radius: 20px;
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   font-weight: 700;
   color: #00e676;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
 }
 
 /* ===== المستخدم ===== */
 .nav-user {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .user-profile {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   cursor: pointer;
-  padding: 6px 12px;
+  padding: 4px 10px;
   border-radius: 30px;
   transition: background 0.3s;
   position: relative;
@@ -393,14 +387,14 @@ html.menu-open {
 }
 
 .user-avatar {
-  width: 36px;
-  height: 36px;
+  width: 30px;
+  height: 30px;
   background: linear-gradient(135deg, #00c853, #00e676);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: #0a0e1a;
   font-weight: 700;
   flex-shrink: 0;
@@ -408,17 +402,17 @@ html.menu-open {
 
 #userDisplayName {
   color: rgba(240, 244, 255, 0.85);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  max-width: 120px;
+  max-width: 110px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .dropdown-arrow {
-  color: rgba(240, 244, 255, 0.3);
-  font-size: 0.7rem;
+  color: rgba(240, 244, 255, 0.35);
+  font-size: 0.65rem;
   transition: transform 0.3s;
 }
 
@@ -431,13 +425,13 @@ html.menu-open {
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
-  width: 260px;
-  background: rgba(10, 14, 26, 0.95);
+  width: 240px;
+  background: rgba(10, 14, 26, 0.96);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(0, 230, 118, 0.12);
-  border-radius: 16px;
+  border-radius: 14px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-  padding: 8px;
+  padding: 6px;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-8px);
@@ -454,33 +448,33 @@ html.menu-open {
 .dropdown-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px;
+  gap: 10px;
+  padding: 10px;
   border-radius: 10px;
   margin-bottom: 4px;
 }
 
 .dropdown-avatar {
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   background: linear-gradient(135deg, #00c853, #00e676);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
   flex-shrink: 0;
 }
 
 .dropdown-name {
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   color: #fff;
 }
 
 .dropdown-email {
-  font-size: 0.75rem;
-  color: rgba(240, 244, 255, 0.4);
+  font-size: 0.7rem;
+  color: rgba(240, 244, 255, 0.45);
   margin-top: 2px;
 }
 
@@ -493,11 +487,11 @@ html.menu-open {
 .dropdown-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  color: rgba(240, 244, 255, 0.7);
-  font-size: 0.85rem;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: rgba(240, 244, 255, 0.72);
+  font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
@@ -510,7 +504,7 @@ html.menu-open {
 }
 
 .dropdown-icon {
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .dropdown-logout {
@@ -526,10 +520,9 @@ html.menu-open {
 .hamburger {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3.5px;
   cursor: pointer;
-  padding: 8px;
-  margin-right: 4px;
+  padding: 6px;
   border-radius: 8px;
   transition: background 0.3s;
 }
@@ -539,9 +532,9 @@ html.menu-open {
 }
 
 .hamburger span {
-  width: 22px;
-  height: 2.5px;
-  background: rgba(240, 244, 255, 0.6);
+  width: 20px;
+  height: 2px;
+  background: rgba(240, 244, 255, 0.65);
   border-radius: 4px;
   transition: all 0.3s;
 }
@@ -569,8 +562,8 @@ html.menu-open {
 .mobile-menu {
   position: fixed;
   top: 0;
-  right: -300px;
-  width: 280px;
+  right: -280px;
+  width: 260px;
   height: 100%;
   background: rgba(10, 14, 26, 0.97);
   backdrop-filter: blur(24px);
@@ -590,33 +583,27 @@ html.menu-open {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 16px;
   border-bottom: 1px solid rgba(0, 230, 118, 0.06);
 }
 
 .mobile-menu-header .logo-glow {
-  font-size: 1rem;
+  font-size: 0.92rem;
 }
 
 .mobile-menu-close {
   background: none;
   border: none;
-  color: rgba(240, 244, 255, 0.5);
-  font-size: 1.3rem;
+  color: rgba(240, 244, 255, 0.55);
+  font-size: 1.15rem;
   cursor: pointer;
   padding: 4px 8px;
   border-radius: 8px;
-  transition: all 0.3s;
-}
-
-.mobile-menu-close:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.05);
 }
 
 .mobile-menu-links {
   flex: 1;
-  padding: 12px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -625,45 +612,41 @@ html.menu-open {
 .mobile-link {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 14px 16px;
-  border-radius: 14px;
-  color: rgba(240, 244, 255, 0.6);
-  font-size: 0.95rem;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  color: rgba(240, 244, 255, 0.65);
+  font-size: 0.86rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.25s;
   text-decoration: none;
 }
 
-.mobile-link:hover {
-  background: rgba(0, 230, 118, 0.06);
-  color: #00e676;
-}
-
+.mobile-link:hover,
 .mobile-link.active {
   background: rgba(0, 230, 118, 0.08);
   color: #00e676;
 }
 
 .mobile-link-icon {
-  font-size: 1.2rem;
-  width: 32px;
+  font-size: 1.05rem;
+  width: 24px;
   text-align: center;
 }
 
 .mobile-menu-footer {
-  padding: 16px 20px;
+  padding: 12px 16px;
   border-top: 1px solid rgba(0, 230, 118, 0.04);
-  color: rgba(240, 244, 255, 0.15);
-  font-size: 0.7rem;
+  color: rgba(240, 244, 255, 0.25);
+  font-size: 0.68rem;
   text-align: center;
 }
 
-/* ===== الصفحات ===== */
+/* ===== الصفحات والحاويات (أوسع ومريح) ===== */
 .page {
   display: none;
-  padding: 40px 0;
+  padding: 22px 0;
   min-height: 60vh;
 }
 
@@ -672,67 +655,67 @@ html.menu-open {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 12px;
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
 }
 
 .section-badge {
   display: inline-block;
   background: rgba(0, 230, 118, 0.08);
   border: 1px solid rgba(0, 230, 118, 0.12);
-  padding: 3px 14px;
+  padding: 2px 10px;
   border-radius: 20px;
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   font-weight: 700;
   color: #00e676;
-  letter-spacing: 1px;
-  margin-bottom: 10px;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
   text-transform: uppercase;
 }
 
 .section-title {
-  font-size: 1.8rem;
+  font-size: 1.38rem;
   font-weight: 900;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   background: linear-gradient(135deg, #f0f4ff, #69f0ae);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .section-subtitle {
-  color: rgba(240, 244, 255, 0.4);
-  font-size: 0.9rem;
+  color: rgba(240, 244, 255, 0.45);
+  font-size: 0.8rem;
 }
 
 /* ===== بطاقات المنتجات ===== */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
 }
 
 .product-card {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(0, 230, 118, 0.06);
-  border-radius: 20px;
+  border-radius: 16px;
   overflow: hidden;
-  transition: all 0.4s ease;
+  transition: all 0.35s ease;
 }
 
 .product-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
   border-color: rgba(0, 230, 118, 0.15);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.3);
 }
 
 .card-img {
-  height: 180px;
+  height: 142px;
   overflow: hidden;
   position: relative;
 }
@@ -741,11 +724,11 @@ html.menu-open {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.45s ease;
 }
 
 .product-card:hover .card-img img {
-  transform: scale(1.08);
+  transform: scale(1.06);
 }
 
 .card-overlay {
@@ -753,34 +736,35 @@ html.menu-open {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 60%;
+  height: 55%;
   background: linear-gradient(transparent, rgba(10, 14, 26, 0.8));
 }
 
 .card-body {
-  padding: 20px;
+  padding: 14px;
 }
 
 .card-body h3 {
-  font-size: 1rem;
+  font-size: 0.92rem;
   font-weight: 700;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .card-body p {
-  color: rgba(240, 244, 255, 0.5);
-  font-size: 0.8rem;
-  margin-bottom: 16px;
+  color: rgba(240, 244, 255, 0.52);
+  font-size: 0.74rem;
+  margin-bottom: 12px;
 }
 
 .card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 8px;
 }
 
 .card-price {
-  font-size: 1.1rem;
+  font-size: 0.94rem;
   font-weight: 900;
   color: #00e676;
 }
@@ -789,82 +773,83 @@ html.menu-open {
 .btn-glow {
   background: linear-gradient(135deg, #00c853, #00e676);
   border: none;
-  padding: 10px 20px;
-  border-radius: 30px;
+  padding: 8px 16px;
+  border-radius: 24px;
   color: #0a0e1a;
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-family: 'Cairo', sans-serif;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.25s;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
 }
 
 .btn-glow:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 230, 118, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 230, 118, 0.22);
 }
 
 .btn-outline {
   background: transparent;
-  border: 1px solid rgba(0, 230, 118, 0.2);
+  border: 1px solid rgba(0, 230, 118, 0.22);
   color: #00e676;
 }
 
 .btn-outline:hover {
-  background: rgba(0, 230, 118, 0.05);
-  box-shadow: 0 8px 25px rgba(0, 230, 118, 0.05);
+  background: rgba(0, 230, 118, 0.06);
 }
 
 /* ===== السلة ===== */
 .cart-container {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .cart-empty {
   text-align: center;
-  font-size: 1.2rem;
-  color: rgba(240, 244, 255, 0.2);
-  padding: 60px 20px;
+  font-size: 1rem;
+  color: rgba(240, 244, 255, 0.3);
+  padding: 40px 16px;
 }
 
 .cart-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 18px;
+  padding: 11px 14px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(0, 230, 118, 0.06);
-  border-radius: 14px;
-  margin-bottom: 10px;
+  border-radius: 12px;
+  margin-bottom: 8px;
 }
 
 .cart-item h4 {
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   font-weight: 700;
 }
 
 .cart-item .price {
   color: #00e676;
   font-weight: 700;
+  font-size: 0.84rem;
 }
 
 .cart-total {
   text-align: left;
-  font-size: 1.15rem;
+  font-size: 0.98rem;
   font-weight: 900;
   color: #00e676;
-  padding: 16px 18px;
-  background: rgba(0, 230, 118, 0.03);
-  border-radius: 14px;
-  margin-top: 10px;
+  padding: 12px 14px;
+  background: rgba(0, 230, 118, 0.04);
+  border-radius: 12px;
+  margin-top: 8px;
 }
 
 .cart-actions {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -872,71 +857,65 @@ html.menu-open {
 /* ===== ملخص الطلب (checkout) ===== */
 .checkout-summary {
   background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(0, 230, 118, 0.06);
-  border-radius: 16px;
-  padding: 20px 24px;
-  margin-bottom: 28px;
+  border: 1px solid rgba(0, 230, 118, 0.07);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
 }
 
 .checkout-summary h3 {
   color: #00e676;
-  font-size: 0.9rem;
-  margin-bottom: 12px;
+  font-size: 0.84rem;
+  margin-bottom: 8px;
 }
 
 .checkout-summary p {
-  color: rgba(240, 244, 255, 0.7);
-  font-size: 0.85rem;
-  padding: 4px 0;
+  color: rgba(240, 244, 255, 0.72);
+  font-size: 0.8rem;
+  padding: 3px 0;
 }
 
 .checkout-summary .total-row {
   display: flex;
   justify-content: space-between;
-  padding: 12px 0;
+  padding: 9px 0 2px;
   margin-top: 8px;
   border-top: 1px solid rgba(0, 230, 118, 0.1);
-  font-weight: 700;
+  font-weight: 800;
   color: #00e676;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 /* ===== شبكة اختيار التواصل ===== */
 .contact-choice-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 14px;
-  margin-bottom: 24px;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
 .contact-choice-card {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 18px 22px;
+  gap: 12px;
+  padding: 12px 14px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
+  border-radius: 14px;
   text-decoration: none;
   color: #f0f4ff;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   cursor: pointer;
 }
 
 .contact-choice-card:hover {
-  transform: translateX(-4px);
-  border-color: rgba(0, 230, 118, 0.2);
+  transform: translateX(-3px);
+  border-color: rgba(0, 230, 118, 0.22);
   background: rgba(0, 230, 118, 0.03);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
 .facebook-choice {
   border-color: rgba(24, 119, 242, 0.2);
-}
-
-.facebook-choice:hover {
-  border-color: rgba(24, 119, 242, 0.4);
-  background: rgba(24, 119, 242, 0.04);
 }
 
 .facebook-choice .choice-icon {
@@ -947,29 +926,24 @@ html.menu-open {
   border-color: rgba(37, 211, 102, 0.2);
 }
 
-.whatsapp-choice:hover {
-  border-color: rgba(37, 211, 102, 0.4);
-  background: rgba(37, 211, 102, 0.04);
-}
-
 .whatsapp-choice .choice-icon {
   color: #25D366;
 }
 
 .choice-icon {
-  width: 48px;
-  height: 48px;
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   background: rgba(255, 255, 255, 0.03);
-  border-radius: 14px;
-  transition: all 0.3s;
+  border-radius: 11px;
 }
 
-.contact-choice-card:hover .choice-icon {
-  transform: scale(1.05);
+.choice-icon svg {
+  width: 24px;
+  height: 24px;
 }
 
 .choice-info {
@@ -977,78 +951,71 @@ html.menu-open {
 }
 
 .choice-info h3 {
-  font-size: 0.95rem;
+  font-size: 0.86rem;
   font-weight: 700;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .choice-info p {
-  color: rgba(240, 244, 255, 0.4);
-  font-size: 0.75rem;
+  color: rgba(240, 244, 255, 0.45);
+  font-size: 0.72rem;
 }
 
 .choice-arrow {
-  font-size: 1.2rem;
-  color: rgba(240, 244, 255, 0.2);
-  transition: all 0.3s;
-}
-
-.contact-choice-card:hover .choice-arrow {
-  color: #00e676;
-  transform: translateX(-4px);
+  font-size: 1rem;
+  color: rgba(240, 244, 255, 0.28);
 }
 
 .checkout-note {
   text-align: center;
-  padding: 16px;
+  padding: 11px 14px;
   background: rgba(255, 255, 255, 0.02);
-  border-radius: 14px;
-  border: 1px solid rgba(0, 230, 118, 0.04);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 230, 118, 0.05);
 }
 
 .checkout-note p {
-  color: rgba(240, 244, 255, 0.3);
-  font-size: 0.8rem;
+  color: rgba(240, 244, 255, 0.4);
+  font-size: 0.74rem;
 }
 
 /* ===== بطاقات التواصل (صفحة Contact) ===== */
 .contact-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
 }
 
 .contact-social-card {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 22px 24px;
+  gap: 12px;
+  padding: 15px 16px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 18px;
+  border-radius: 14px;
   text-decoration: none;
   color: #f0f4ff;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .contact-social-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
 }
 
 .social-icon {
-  width: 52px;
-  height: 52px;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 16px;
+  border-radius: 12px;
   flex-shrink: 0;
-  transition: all 0.3s;
 }
 
-.contact-social-card:hover .social-icon {
-  transform: scale(1.08);
+.social-icon svg {
+  width: 24px;
+  height: 24px;
 }
 
 .facebook-card .social-icon {
@@ -1056,44 +1023,36 @@ html.menu-open {
   color: #1877F2;
 }
 
-.facebook-card:hover {
-  border-color: rgba(24, 119, 242, 0.2);
-}
-
 .whatsapp-card .social-icon {
   background: rgba(37, 211, 102, 0.1);
   color: #25D366;
 }
 
-.whatsapp-card:hover {
-  border-color: rgba(37, 211, 102, 0.2);
-}
-
 .social-info h3 {
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   font-weight: 700;
   margin-bottom: 2px;
 }
 
 .social-info p {
-  color: rgba(240, 244, 255, 0.4);
-  font-size: 0.75rem;
+  color: rgba(240, 244, 255, 0.45);
+  font-size: 0.72rem;
 }
 
 /* ===== القوانين ===== */
 .rules-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
 }
 
 .rules-card {
-  padding: 28px;
+  padding: 18px;
 }
 
 .rules-card h2 {
-  font-size: 1.1rem;
-  margin-bottom: 16px;
+  font-size: 0.96rem;
+  margin-bottom: 10px;
   color: #00e676;
 }
 
@@ -1103,9 +1062,9 @@ html.menu-open {
 }
 
 .rules-card ul li {
-  padding: 8px 0;
-  font-size: 0.9rem;
-  color: rgba(240, 244, 255, 0.7);
+  padding: 6px 0;
+  font-size: 0.82rem;
+  color: rgba(240, 244, 255, 0.72);
   border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
@@ -1115,8 +1074,8 @@ html.menu-open {
 
 /* ===== الإعدادات ===== */
 .settings-section {
-  margin-bottom: 24px;
-  padding-bottom: 20px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
   border-bottom: 1px solid rgba(0, 230, 118, 0.06);
 }
 
@@ -1128,15 +1087,15 @@ html.menu-open {
 
 .settings-section h3 {
   color: #00e676;
-  font-size: 1rem;
-  margin-bottom: 12px;
+  font-size: 0.88rem;
+  margin-bottom: 8px;
 }
 
 .settings-row {
   display: flex;
   justify-content: space-between;
-  padding: 8px 0;
-  font-size: 0.85rem;
+  padding: 6px 0;
+  font-size: 0.8rem;
 }
 
 .settings-label {
@@ -1144,7 +1103,7 @@ html.menu-open {
 }
 
 .settings-value {
-  color: rgba(240, 244, 255, 0.85);
+  color: rgba(240, 244, 255, 0.88);
   font-weight: 600;
 }
 
@@ -1157,38 +1116,37 @@ html.menu-open {
 
 .btn-logout-settings:hover {
   background: rgba(255, 77, 77, 0.2) !important;
-  box-shadow: 0 0 20px rgba(255, 77, 77, 0.1) !important;
 }
 
 /* ===== Toast ===== */
 .toast-container {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
+  bottom: 16px;
+  right: 16px;
   z-index: 9999;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .toast {
-  background: rgba(10, 14, 26, 0.92);
+  background: rgba(10, 14, 26, 0.94);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 230, 118, 0.12);
-  border-radius: 14px;
-  padding: 14px 22px;
-  font-size: 0.85rem;
+  border: 1px solid rgba(0, 230, 118, 0.14);
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 0.78rem;
   font-weight: 600;
   color: #f0f4ff;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-  animation: toastIn 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  animation: toastIn 0.35s ease;
   direction: rtl;
 }
 
 @keyframes toastIn {
   from {
     opacity: 0;
-    transform: translateX(40px);
+    transform: translateX(30px);
   }
   to {
     opacity: 1;
@@ -1199,16 +1157,16 @@ html.menu-open {
 /* ===== الفوتر ===== */
 .site-footer {
   text-align: center;
-  padding: 30px 20px;
+  padding: 20px 12px;
   border-top: 1px solid rgba(0, 230, 118, 0.04);
-  color: rgba(240, 244, 255, 0.2);
-  font-size: 0.8rem;
-  margin-top: 40px;
+  color: rgba(240, 244, 255, 0.28);
+  font-size: 0.74rem;
+  margin-top: 24px;
 }
 
-/* ===== صفحة المحافظ (تمرير يمين ويسار) ===== */
+/* ===== صفحة المحافظ (أوسع وأخف) ===== */
 .wallets-wrapper {
-  max-width: 740px;
+  max-width: 920px;
   margin: 0 auto;
 }
 
@@ -1216,21 +1174,21 @@ html.menu-open {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 14px;
+  gap: 8px;
+  margin-bottom: 10px;
 }
 
 .wallet-arrow-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
   border: 1px solid rgba(0, 230, 118, 0.18);
   background: rgba(255, 255, 255, 0.04);
   color: #f0f4ff;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .wallet-arrow-btn:hover {
@@ -1239,7 +1197,7 @@ html.menu-open {
 }
 
 .active-wallet-indicator {
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: #69f0ae;
   text-align: center;
@@ -1247,12 +1205,12 @@ html.menu-open {
 
 .wallets-carousel {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   scrollbar-width: none;
-  padding: 6px 4px 12px;
+  padding: 4px 2px 8px;
 }
 
 .wallets-carousel::-webkit-scrollbar {
@@ -1261,10 +1219,10 @@ html.menu-open {
 
 .wallet-card {
   position: relative;
-  flex: 0 0 88%;
-  min-height: 220px;
-  border-radius: 24px;
-  padding: 24px;
+  flex: 0 0 92%;
+  min-height: 165px;
+  border-radius: 18px;
+  padding: 16px 18px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1277,7 +1235,7 @@ html.menu-open {
 
 .wallet-card.is-selected {
   border-color: rgba(255, 255, 255, 0.65);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);
 }
 
 .wallet-libyana {
@@ -1296,16 +1254,16 @@ html.menu-open {
 }
 
 .wallet-circle-top {
-  width: 220px;
-  height: 220px;
-  top: -70px;
-  left: -50px;
+  width: 170px;
+  height: 170px;
+  top: -55px;
+  left: -40px;
 }
 
 .wallet-circle-bottom {
-  width: 240px;
-  height: 240px;
-  bottom: -95px;
+  width: 190px;
+  height: 190px;
+  bottom: -75px;
   right: 15%;
 }
 
@@ -1315,7 +1273,7 @@ html.menu-open {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
+  gap: 8px;
 }
 
 .wallet-primary-tag,
@@ -1324,8 +1282,8 @@ html.menu-open {
   border: 1px solid rgba(255, 255, 255, 0.35);
   color: #ffd54f;
   font-weight: 700;
-  font-size: 0.85rem;
-  padding: 6px 14px;
+  font-size: 0.72rem;
+  padding: 4px 10px;
   border-radius: 999px;
   white-space: nowrap;
 }
@@ -1336,26 +1294,26 @@ html.menu-open {
 }
 
 .wallet-name {
-  font-size: 1.35rem;
+  font-size: 1.05rem;
   font-weight: 900;
   color: #ffffff;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .wallet-meta {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .wallet-icon-box {
-  width: 54px;
-  height: 54px;
-  border-radius: 16px;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
   background: rgba(255, 255, 255, 0.22);
   display: grid;
   place-items: center;
   font-weight: 900;
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: #ffffff;
   flex-shrink: 0;
 }
@@ -1369,34 +1327,34 @@ html.menu-open {
 }
 
 .wallet-balance-label {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 4px;
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 2px;
 }
 
 .wallet-balance-value {
-  font-size: 2.15rem;
+  font-size: 1.55rem;
   font-weight: 900;
   color: #ffffff;
   direction: ltr;
 }
 
 .wallet-balance-value small {
-  font-size: 1.1rem;
+  font-size: 0.85rem;
   font-weight: 700;
 }
 
 .wallets-dots {
   display: flex;
   justify-content: center;
-  gap: 8px;
-  margin-top: 10px;
-  margin-bottom: 24px;
+  gap: 6px;
+  margin-top: 8px;
+  margin-bottom: 16px;
 }
 
 .wallet-dot {
-  width: 10px;
-  height: 6px;
+  width: 9px;
+  height: 5px;
   border: none;
   border-radius: 999px;
   background: #2c3545;
@@ -1406,61 +1364,62 @@ html.menu-open {
 }
 
 .wallet-dot.active {
-  width: 28px;
+  width: 22px;
   background: #3b82f6;
 }
 
 .glass-card {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(0, 230, 118, 0.08);
-  border-radius: 20px;
-  padding: 24px;
+  border-radius: 16px;
+  padding: 16px;
 }
 
 .topup-box h3 {
-  font-size: 1rem;
+  font-size: 0.88rem;
   color: #00e676;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .topup-controls {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
 .topup-controls input {
   flex: 1;
-  min-width: 180px;
-  padding: 12px 16px;
-  border-radius: 14px;
+  min-width: 150px;
+  padding: 9px 12px;
+  border-radius: 11px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.04);
   color: #f0f4ff;
+  font-size: 0.82rem;
   font-family: 'Cairo', sans-serif;
   outline: none;
 }
 
 .payment-methods-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 14px;
-  margin-bottom: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
 }
 
 .payment-option-card {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 16px 18px;
-  border-radius: 16px;
+  gap: 10px;
+  padding: 11px 13px;
+  border-radius: 13px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.03);
   color: #f0f4ff;
   font-family: 'Cairo', sans-serif;
   text-align: right;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .payment-option-card.active-method {
@@ -1469,34 +1428,39 @@ html.menu-open {
 }
 
 .payment-badge {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.1);
   display: grid;
   place-items: center;
   font-weight: 900;
+  font-size: 0.82rem;
   flex-shrink: 0;
 }
 
 .payment-details h3 {
-  font-size: 0.95rem;
-  margin-bottom: 3px;
+  font-size: 0.84rem;
+  margin-bottom: 2px;
 }
 
 .payment-details p {
-  font-size: 0.78rem;
-  color: rgba(240, 244, 255, 0.55);
+  font-size: 0.7rem;
+  color: rgba(240, 244, 255, 0.58);
 }
 
 .checkout-pay-box {
   display: flex;
   justify-content: center;
-  margin-bottom: 24px;
+  margin-bottom: 14px;
 }
 
 /* ===== استجابة ===== */
 @media (min-width: 640px) {
+  .container {
+    padding: 0 20px;
+  }
+
   .contact-choice-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -1510,16 +1474,8 @@ html.menu-open {
 
 @media (max-width: 768px) {
   .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
-  }
-
-  .glass-card {
-    padding: 20px;
-  }
-
-  .auth-card {
-    padding: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 
   #userDisplayName {
@@ -1527,26 +1483,8 @@ html.menu-open {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 420px) {
   .products-grid {
     grid-template-columns: 1fr;
-  }
-
-  .section-title {
-    font-size: 1.4rem;
-  }
-
-  .glass-nav {
-    padding: 10px 16px;
-  }
-
-  .user-dropdown {
-    width: 220px;
-    left: auto;
-    right: 0;
-  }
-
-  .mobile-menu {
-    width: 260px;
   }
 }
