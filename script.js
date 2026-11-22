@@ -2,7 +2,7 @@
 // 𝐒𝐓𝐎𝐑𝐄 𝐗 — جميع الوظائف
 // ============================================
 
-// ===== المنتجات (مع ربط كل منتج بصورته + إضافة Ly coins) =====
+// ===== المنتجات (مطابقة لأسماء وامتدادات الصور في مجلد images/) =====
 const SHOP_PRODUCTS = [
   {
     name: 'Ly coins',
@@ -20,13 +20,13 @@ const SHOP_PRODUCTS = [
     name: 'Netflix',
     description: 'حسابات واشتراكات نتفلكس Netflix',
     price: 0,
-    image: 'images/netflix.png'
+    image: 'images/netflix.jpg'
   },
   {
     name: 'Discord Nitro',
     description: 'اشتراك ديسكورد نيترو Discord Nitro',
     price: 0,
-    image: 'images/nitro.png'
+    image: 'images/nitro.jpg'
   },
   {
     name: 'Snapchat',
@@ -44,37 +44,37 @@ const SHOP_PRODUCTS = [
     name: 'PUBG Mobile UC',
     description: 'شحن شدات ببجي موبايل UC',
     price: 0,
-    image: 'images/cod.jpg'
+    image: 'images/pupg.jpg'
   },
   {
     name: 'Telegram Stars',
     description: 'شحن نجوم تليجرام Telegram Stars',
     price: 0,
-    image: 'images/icon.png'
+    image: 'images/stars.jpg'
   },
   {
     name: 'TikTok Followers',
     description: 'زيادة متابعين حساب تيك توك',
     price: 0,
-    image: 'images/bost.jpg'
+    image: 'images/tiktok.png'
   },
   {
     name: 'Instagram Followers',
     description: 'زيادة متابعين حساب انستغرام',
     price: 0,
-    image: 'images/bost.jpg'
+    image: 'images/instagram.jpg'
   },
   {
     name: 'ROBLOX Robux',
     description: 'شحن عملات روبلوكس Robux',
     price: 0,
-    image: 'images/Forza.jpg'
+    image: 'images/roblox.jpg'
   },
   {
     name: 'TikTok Coins',
     description: 'شحن عملات تيك توك TikTok Coins',
     price: 0,
-    image: 'images/credit.gif'
+    image: 'images/tiktok-coins.jpg'
   }
 ];
 
