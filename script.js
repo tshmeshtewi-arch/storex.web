@@ -2,6 +2,27 @@
 // 𝐒𝐓𝐎𝐑𝐄 𝐗 — جميع الوظائف
 // ============================================
 
+// ===== إعدادات البريد عبر Brevo SMTP (عبر الخادم الخلفي) =====
+const MAIL_API_URL = '/api/send-email'; // غيّره لرابط الخادم الكامل إذا كانت الواجهة على استضافة منفصلة
+
+async function sendBrevoEmail({ to, subject, text, html }) {
+  try {
+    const res = await fetch(MAIL_API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ to, subject, text, html })
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || data.ok === false) {
+      throw new Error(data.error || 'فشل إرسال البريد');
+    }
+    return true;
+  } catch (err) {
+    console.error('[STORE X Mail Error]:', err);
+    return false;
+  }
+}
+
 // ===== المنتجات (أسماء إنجليزية) =====
 const SHOP_PRODUCTS = [
   {
@@ -189,6 +210,11 @@ function processWalletPayment() {
     return;
   }
 
+  const methodText = currentPaymentMethod === 'libyana' ? 'ليبيانا' : 'البطاقة المصرفية';
+  const session = JSON.parse(localStorage.getItem(SESSION_KEY) || 'null');
+  const buyerEmail = session?.email;
+  const itemsList = cart.map(i => `• ${i.name} (${Number(i.price) || 0} LYD)`).join('\n');
+
   wallets[currentPaymentMethod] = currentBalance - total;
   saveWallets(wallets);
   updateWalletBalancesUI();
@@ -196,7 +222,22 @@ function processWalletPayment() {
   loadCart();
   loadCheckout();
 
-  const methodText = currentPaymentMethod === 'libyana' ? 'ليبيانا' : 'البطاقة المصرفية';
+  if (buyerEmail) {
+    sendBrevoEmail({
+      to: buyerEmail,
+      subject: 'تأكيد طلبك - 𝐒𝐓𝐎𝐑𝐄 𝐗',
+      text: `تم إتمام الدفع بنجاح بقيمة ${total} LYD عبر ${methodText}.\nالمنتجات:\n${itemsList}`,
+      html: `
+        <div dir="rtl" style="font-family: 'Cairo', Arial, sans-serif; line-height: 1.7;">
+          <h2>تم تأكيد طلبك بنجاح ✅</h2>
+          <p><strong>طريقة الدفع:</strong> ${methodText}</p>
+          <p><strong>الإجمالي:</strong> ${total} LYD</p>
+          <pre style="background:#f5f5f5;padding:12px;border-radius:8px;">${itemsList}</pre>
+        </div>
+      `
+    });
+  }
+
   showToast(`✅ تم إتمام الدفع بنجاح بقيمة ${total} LYD عبر ${methodText}`);
 }
 
@@ -340,7 +381,7 @@ function handleSignup() {
   goToAuthStep('verify');
   document.getElementById('userEmail').innerText = email;
   localStorage.setItem(PENDING_EMAIL_KEY, email);
-  showToast('📧 تم إنشاء رمز التحقق');
+  showToast('📧 جاري إرسال رمز التحقق...');
 }
 
 function handleLogin() {
@@ -370,7 +411,7 @@ function handleLogin() {
     goToAuthStep('verify');
     document.getElementById('userEmail').innerText = email;
     localStorage.setItem(PENDING_EMAIL_KEY, email);
-    showToast('📧 تم إنشاء رمز التحقق');
+    showToast('📧 جاري إرسال رمز التحقق...');
     return;
   }
 
@@ -382,6 +423,26 @@ function sendVerificationCode(email, name) {
   localStorage.setItem(VERIFY_CODE_KEY, code);
   localStorage.setItem(VERIFY_TIME_KEY, String(Date.now()));
   console.info(`[STORE X] Verification code for ${name} (${email}): ${code}`);
+
+  sendBrevoEmail({
+    to: email,
+    subject: 'رمز التحقق - 𝐒𝐓𝐎𝐑𝐄 𝐗',
+    text: `مرحباً ${name}، رمز التحقق الخاص بك في متجر STORE X هو: ${code} (صالح لمدة 5 دقائق).`,
+    html: `
+      <div dir="rtl" style="font-family: 'Cairo', Arial, sans-serif; line-height: 1.7;">
+        <h2>مرحباً ${name} 👋</h2>
+        <p>رمز التحقق الخاص بك في متجر <strong>𝐒𝐓𝐎𝐑𝐄 𝐗</strong> هو:</p>
+        <div style="font-size: 28px; font-weight: bold; letter-spacing: 6px; color: #00c853; margin: 12px 0;">${code}</div>
+        <p>الرمز صالح لمدة 5 دقائق.</p>
+      </div>
+    `
+  }).then(sent => {
+    if (sent) {
+      showToast('📧 تم إرسال رمز التحقق إلى بريدك الإلكتروني');
+    } else {
+      showToast('⚠️ تعذر إرسال البريد حالياً، تحقق من تشغيل خادم SMTP');
+    }
+  });
 }
 
 function handleVerify() {
@@ -427,7 +488,6 @@ function resendCode() {
 
   if (email && user) {
     sendVerificationCode(email, user.name);
-    showToast('📧 تم إعادة إنشاء الرمز');
   }
 }
 
