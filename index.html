@@ -53,6 +53,11 @@
             <span>دخول</span>
             <div class="btn-shimmer"></div>
           </button>
+
+          <button class="google-btn" type="button" onclick="handleGoogleLogin()">
+            <span class="google-icon">G</span>
+            <span>تسجيل الدخول بواسطة Google</span>
+          </button>
         </div>
         <div class="auth-footer">
           <p>ليس لديك حساب؟ <a href="javascript:void(0)" onclick="showSignup()">إنشاء حساب جديد</a></p>
@@ -85,13 +90,18 @@
             <span>إنشاء حساب</span>
             <div class="btn-shimmer"></div>
           </button>
+
+          <button class="google-btn" type="button" onclick="handleGoogleLogin()">
+            <span class="google-icon">G</span>
+            <span>المتابعة بواسطة Google</span>
+          </button>
         </div>
         <div class="auth-footer">
           <p>لديك حساب؟ <a href="javascript:void(0)" onclick="showLogin()">تسجيل دخول</a></p>
         </div>
       </div>
 
-      <!-- Verify -->
+      <!-- Verify (معطلة مؤقتاً) -->
       <div id="verifyScreen" class="auth-card" style="display:none;">
         <div class="auth-header">
           <h2>تأكيد البريد</h2>
@@ -100,14 +110,11 @@
         </div>
         <div class="auth-input-group">
           <div class="auth-input-field code-field">
-            <input type="text" id="verifyCode" placeholder="000000" maxlength="6" required>
+            <input type="text" id="verifyCode" placeholder="000000" maxlength="6">
           </div>
           <button class="auth-btn" type="button" onclick="handleVerify()">
             <span>تأكيد</span>
             <div class="btn-shimmer"></div>
-          </button>
-          <button class="auth-btn auth-btn-outline" type="button" onclick="resendCode()">
-            <span>إعادة إرسال الرمز</span>
           </button>
         </div>
       </div>
