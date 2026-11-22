@@ -1,0 +1,6 @@
+PORT=3000
+SMTP_HOST=smtp-relay.brevo.com
+SMTP_PORT=587
+SMTP_USER=c47e35001@smtp-brevo.com
+SMTP_PASS=xsmtpsib-b17521db5bc73e6a3b821c55091dde4b93c66e366026cffa9e9a703fe68c04db-5O7HWMO8GGIWmsFL
+MAIL_FROM="STORE X <andoat116@gmail.com>"
