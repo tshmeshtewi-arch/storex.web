@@ -2,13 +2,43 @@
 // 𝐒𝐓𝐎𝐑𝐄 𝐗 — جميع الوظائف
 // ============================================
 
-// ===== المنتجات (أسماء إنجليزية) =====
+// ===== المنتجات (مع ربط كل منتج بصورته + إضافة Ly coins) =====
 const SHOP_PRODUCTS = [
+  {
+    name: 'Ly coins',
+    description: 'عملات Ly coins بسعر مميز',
+    price: 1,
+    image: 'images/lycoins.png'
+  },
   {
     name: 'SAMP Host 100 Players',
     description: 'هوست سامب 100 لاعب بأداء مستقر',
     price: 20,
     image: 'images/storex.png'
+  },
+  {
+    name: 'Netflix',
+    description: 'حسابات واشتراكات نتفلكس Netflix',
+    price: 0,
+    image: 'images/netflix.png'
+  },
+  {
+    name: 'Discord Nitro',
+    description: 'اشتراك ديسكورد نيترو Discord Nitro',
+    price: 0,
+    image: 'images/nitro.png'
+  },
+  {
+    name: 'Snapchat',
+    description: 'خدمات وشحن سناب شات Snapchat',
+    price: 0,
+    image: 'images/snapchat.jpg'
+  },
+  {
+    name: 'Credit',
+    description: 'شحن رصيد وكردت Credit',
+    price: 0,
+    image: 'images/credit.gif'
   },
   {
     name: 'PUBG Mobile UC',
@@ -26,7 +56,7 @@ const SHOP_PRODUCTS = [
     name: 'TikTok Followers',
     description: 'زيادة متابعين حساب تيك توك',
     price: 0,
-    image: 'images/snapchat.jpg'
+    image: 'images/bost.jpg'
   },
   {
     name: 'Instagram Followers',
@@ -298,7 +328,7 @@ function goToAuthStep(step) {
 
   if (login) login.style.display = step === 'login' ? 'block' : 'none';
   if (signup) signup.style.display = step === 'signup' ? 'block' : 'none';
-  if (verify) verify.style.display = 'none'; // معطلة مؤقتاً
+  if (verify) verify.style.display = 'none';
 }
 
 function showSignup() { goToAuthStep('signup'); }
@@ -363,7 +393,6 @@ function handleLogin() {
 }
 
 function handleGoogleLogin() {
-  // تسجيل دخول سريع عبر Google (محلي لحين ربط Google OAuth Client ID الحقيقي)
   const googleEmail = 'google.user@storex.ly';
   const googleName = 'مستخدم Google';
   const users = getUsers();
