@@ -254,6 +254,42 @@ html.menu-open {
   100% { left: 100%; }
 }
 
+/* ===== زر تسجيل الدخول عبر Google ===== */
+.google-btn {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  color: #f0f4ff;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.google-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(0, 230, 118, 0.35);
+}
+
+.google-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #0a0e1a;
+  font-weight: 900;
+  font-size: 0.85rem;
+  display: grid;
+  place-items: center;
+}
+
 .auth-footer {
   text-align: center;
   margin-top: 20px;
@@ -1513,4 +1549,4 @@ html.menu-open {
   .mobile-menu {
     width: 260px;
   }
-  }
+}
