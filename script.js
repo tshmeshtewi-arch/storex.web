@@ -2,27 +2,6 @@
 // 𝐒𝐓𝐎𝐑𝐄 𝐗 — جميع الوظائف
 // ============================================
 
-// ===== إعدادات البريد عبر Brevo SMTP (عبر الخادم الخلفي) =====
-const MAIL_API_URL = '/api/send-email'; // غيّره لرابط الخادم الكامل إذا كانت الواجهة على استضافة منفصلة
-
-async function sendBrevoEmail({ to, subject, text, html }) {
-  try {
-    const res = await fetch(MAIL_API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ to, subject, text, html })
-    });
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok || data.ok === false) {
-      throw new Error(data.error || 'فشل إرسال البريد');
-    }
-    return true;
-  } catch (err) {
-    console.error('[STORE X Mail Error]:', err);
-    return false;
-  }
-}
-
 // ===== المنتجات (أسماء إنجليزية) =====
 const SHOP_PRODUCTS = [
   {
@@ -211,9 +190,6 @@ function processWalletPayment() {
   }
 
   const methodText = currentPaymentMethod === 'libyana' ? 'ليبيانا' : 'البطاقة المصرفية';
-  const session = JSON.parse(localStorage.getItem(SESSION_KEY) || 'null');
-  const buyerEmail = session?.email;
-  const itemsList = cart.map(i => `• ${i.name} (${Number(i.price) || 0} LYD)`).join('\n');
 
   wallets[currentPaymentMethod] = currentBalance - total;
   saveWallets(wallets);
@@ -221,22 +197,6 @@ function processWalletPayment() {
   localStorage.removeItem('cart');
   loadCart();
   loadCheckout();
-
-  if (buyerEmail) {
-    sendBrevoEmail({
-      to: buyerEmail,
-      subject: 'تأكيد طلبك - 𝐒𝐓𝐎𝐑𝐄 𝐗',
-      text: `تم إتمام الدفع بنجاح بقيمة ${total} LYD عبر ${methodText}.\nالمنتجات:\n${itemsList}`,
-      html: `
-        <div dir="rtl" style="font-family: 'Cairo', Arial, sans-serif; line-height: 1.7;">
-          <h2>تم تأكيد طلبك بنجاح ✅</h2>
-          <p><strong>طريقة الدفع:</strong> ${methodText}</p>
-          <p><strong>الإجمالي:</strong> ${total} LYD</p>
-          <pre style="background:#f5f5f5;padding:12px;border-radius:8px;">${itemsList}</pre>
-        </div>
-      `
-    });
-  }
 
   showToast(`✅ تم إتمام الدفع بنجاح بقيمة ${total} LYD عبر ${methodText}`);
 }
@@ -319,12 +279,9 @@ function scrollWallets(direction) {
   }
 }
 
-// ===== نظام تسجيل الدخول =====
+// ===== نظام تسجيل الدخول (بدون تأكيد رمز مؤقتاً + تسجيل Google) =====
 const USERS_KEY = 'storex_users';
 const SESSION_KEY = 'storex_session';
-const VERIFY_CODE_KEY = 'verify_code';
-const VERIFY_TIME_KEY = 'verify_time';
-const PENDING_EMAIL_KEY = 'pending_email';
 
 function getUsers() {
   return JSON.parse(localStorage.getItem(USERS_KEY)) || {};
@@ -334,7 +291,6 @@ function saveUsers(users) {
   localStorage.setItem(USERS_KEY, JSON.stringify(users));
 }
 
-// دالة موحدة للتنقل بين نماذج الدخول (login / signup / verify)
 function goToAuthStep(step) {
   const login = document.getElementById('loginForm');
   const signup = document.getElementById('signupForm');
@@ -342,7 +298,7 @@ function goToAuthStep(step) {
 
   if (login) login.style.display = step === 'login' ? 'block' : 'none';
   if (signup) signup.style.display = step === 'signup' ? 'block' : 'none';
-  if (verify) verify.style.display = step === 'verify' ? 'block' : 'none';
+  if (verify) verify.style.display = 'none'; // معطلة مؤقتاً
 }
 
 function showSignup() { goToAuthStep('signup'); }
@@ -374,14 +330,9 @@ function handleSignup() {
     return;
   }
 
-  users[email] = { name, email, password, verified: false };
+  users[email] = { name, email, password, verified: true, provider: 'email' };
   saveUsers(users);
-  sendVerificationCode(email, name);
-
-  goToAuthStep('verify');
-  document.getElementById('userEmail').innerText = email;
-  localStorage.setItem(PENDING_EMAIL_KEY, email);
-  showToast('📧 جاري إرسال رمز التحقق...');
+  completeLogin(email);
 }
 
 function handleLogin() {
@@ -401,93 +352,40 @@ function handleLogin() {
     return;
   }
 
-  if (user.password !== password) {
+  if (user.password && user.password !== password) {
     showToast('⚠️ كلمة السر خطأ');
     return;
   }
 
-  if (!user.verified) {
-    sendVerificationCode(email, user.name);
-    goToAuthStep('verify');
-    document.getElementById('userEmail').innerText = email;
-    localStorage.setItem(PENDING_EMAIL_KEY, email);
-    showToast('📧 جاري إرسال رمز التحقق...');
-    return;
-  }
-
+  user.verified = true;
+  saveUsers(users);
   completeLogin(email);
 }
 
-function sendVerificationCode(email, name) {
-  const code = String(Math.floor(100000 + Math.random() * 900000));
-  localStorage.setItem(VERIFY_CODE_KEY, code);
-  localStorage.setItem(VERIFY_TIME_KEY, String(Date.now()));
-  console.info(`[STORE X] Verification code for ${name} (${email}): ${code}`);
-
-  sendBrevoEmail({
-    to: email,
-    subject: 'رمز التحقق - 𝐒𝐓𝐎𝐑𝐄 𝐗',
-    text: `مرحباً ${name}، رمز التحقق الخاص بك في متجر STORE X هو: ${code} (صالح لمدة 5 دقائق).`,
-    html: `
-      <div dir="rtl" style="font-family: 'Cairo', Arial, sans-serif; line-height: 1.7;">
-        <h2>مرحباً ${name} 👋</h2>
-        <p>رمز التحقق الخاص بك في متجر <strong>𝐒𝐓𝐎𝐑𝐄 𝐗</strong> هو:</p>
-        <div style="font-size: 28px; font-weight: bold; letter-spacing: 6px; color: #00c853; margin: 12px 0;">${code}</div>
-        <p>الرمز صالح لمدة 5 دقائق.</p>
-      </div>
-    `
-  }).then(sent => {
-    if (sent) {
-      showToast('📧 تم إرسال رمز التحقق إلى بريدك الإلكتروني');
-    } else {
-      showToast('⚠️ تعذر إرسال البريد حالياً، تحقق من تشغيل خادم SMTP');
-    }
-  });
-}
-
-function handleVerify() {
-  const code = document.getElementById('verifyCode').value.trim();
-  const savedCode = localStorage.getItem(VERIFY_CODE_KEY);
-  const savedTime = localStorage.getItem(VERIFY_TIME_KEY);
-  const email = localStorage.getItem(PENDING_EMAIL_KEY);
-
-  if (!code || code.length < 6) {
-    showToast('⚠️ أدخل رمز التحقق كاملاً');
-    return;
-  }
-
-  const now = Date.now();
-  if (!savedTime || now - parseInt(savedTime, 10) > 300000) {
-    showToast('⚠️ انتهت صلاحية الرمز، اطلب رمز جديد');
-    return;
-  }
-
-  if (code !== savedCode) {
-    showToast('⚠️ رمز التحقق غير صحيح');
-    return;
-  }
-
+function handleGoogleLogin() {
+  // تسجيل دخول سريع عبر Google (محلي لحين ربط Google OAuth Client ID الحقيقي)
+  const googleEmail = 'google.user@storex.ly';
+  const googleName = 'مستخدم Google';
   const users = getUsers();
-  if (users[email]) {
-    users[email].verified = true;
+
+  if (!users[googleEmail]) {
+    users[googleEmail] = {
+      name: googleName,
+      email: googleEmail,
+      password: '',
+      verified: true,
+      provider: 'google'
+    };
     saveUsers(users);
   }
 
-  localStorage.removeItem(VERIFY_CODE_KEY);
-  localStorage.removeItem(VERIFY_TIME_KEY);
-  localStorage.removeItem(PENDING_EMAIL_KEY);
-
-  showToast('✅ تم تأكيد البريد الإلكتروني');
-  completeLogin(email);
+  completeLogin(googleEmail);
 }
 
-function resendCode() {
-  const email = localStorage.getItem(PENDING_EMAIL_KEY);
-  const users = getUsers();
-  const user = users[email];
-
-  if (email && user) {
-    sendVerificationCode(email, user.name);
+function handleVerify() {
+  const email = localStorage.getItem('pending_email');
+  if (email) {
+    completeLogin(email);
   }
 }
 
@@ -536,7 +434,7 @@ function handleLogout() {
 // التحقق من الجلسة
 (function checkSession() {
   const session = JSON.parse(localStorage.getItem(SESSION_KEY) || 'null');
-  if (session && session.verified) {
+  if (session) {
     const authScreen = document.getElementById('authScreen');
     const mainSite = document.getElementById('mainSite');
     if (authScreen) authScreen.style.display = 'none';
